@@ -20,6 +20,7 @@ export const CreateUser=(EmpName,EmpSalary,EmpDesignation)=>{
             debugger;
             console.log("response -> ", Constant.BASE_URL+Constant.insert);
 
+
             return { type: SAVE_SUCCESS, payload: response.data };
 
             // return dispatch=>({

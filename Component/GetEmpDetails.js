@@ -2,18 +2,23 @@ import React ,{Component} from 'react';
 import {View,Alert,TouchableOpacity,Text} from 'react-native';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as EmpAction from '../Actions/getEmpAction';
+import { EmpAction } from '../Actions/getEmpAction';
 
 class GetEmpDetails extends Component{
     constructor(props){
 
         super(props);
+        this.state = {
+
+            select:props.select
+        }
     }
 
     componentDidMount(){
 
         const { dispatch } = this.props
-        this.props.actions.EmpAction();
+       // console.log("Display Dispatch",dispatch);
+        this.props.onEmpAction();
     }
 
     componentWillReceiveProps(nextProps){
@@ -23,26 +28,34 @@ class GetEmpDetails extends Component{
     {
 
         console.log('PROPS',this.props)
-        console.log(this.props.actions.EmpAction);
+        // console.log(this.props.actions.EmpAction);
+        // Alert.alert("Display Dsata"+this.props.actions.EmpAction);
         return(
 
             <View>
-
-                <Text>Hi</Text>
+                <Text>Hi
+                </Text>
             </View>
         );
     }
 
 }
 const mapStateToProps=state=>{
-    debugger;
+
+   // console.log("display state",state);
     return {
-        state
-    }
+       select:state.GetEmp.select
+    };
 }
+/*export default connect(mapStateToProps, {EmpAction
+})(GetEmpDetails);*/
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(EmpAction, dispatch)
+        onEmpAction: () => {
+            dispatch(EmpAction());
+        }
+        // dispatch,
+        // actions: bindActionCreators(EmpAction, dispatch)
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(GetEmpDetails);

@@ -2,28 +2,32 @@ import React ,{Component} from 'react';
 import {View,Alert,TouchableOpacity,Text} from 'react-native';
 import {Button,Input,Header,Card} from "./Common";
 import {NameChanged,DesiChanged,SalaryChanged,CreateUser} from "../Actions/Action";
-import {connect} from 'react-redux';
+import {connect,bindActionCreators} from 'react-redux';
 import axios from 'axios';
 
 class RegisterComponent extends Component{
     constructor(props)
     {
         super(props);
+        this.state ={
+                EmpName:'',
+                EmpSalary:'',
+                EmpDesignation:''
+        };
 
     }
 
-    state = {EmpName:'',EmpSalary:'',EmpDesignation:''}
 
     onButtonClick(){
 
 
-      if(this.props.EmpName===''&& this.props.EmpDesignation===''&& this.props.EmpSalary==='' )
+      if(this.props.EmpName===''&& this.props.EmpDesignation===''&& this.state.EmpSalary==='' )
       {
           alert("Please fill the details")
       }
       else{
 
-          this.props.CreateUser(this.props.EmpName,this.props.EmpSalary,this.props.EmpDesignation).then((res)=>{
+          this.props.CreateUser(this.state.EmpName,this.state.EmpSalary,this.state.EmpDesignation).then((res)=>{
               console.log(res);
               debugger
               Alert.alert("userCreated");
@@ -43,20 +47,20 @@ class RegisterComponent extends Component{
                 <View>
                     <Input
                         label={'EmployeeName : '}
-                        value={this.props.EmpName}
-                        onChangeText={(text) => {this.props.NameChanged(text)}}
+                        value={this.state.EmpName}
+                        onChangeText={(text) => this.setState({EmpName:text})}
                     >
                     </Input>
                     <Input
                         label={'EmployeeSalary:'}
-                        value={this.props.EmpSalary}
-                        onChangeText={(text) => {this.props.SalaryChanged(text)}}
+                        value={this.state.EmpSalary}
+                        onChangeText={(text) => this.setState({EmpSalary:text})}
                     >
                     </Input>
                     <Input
                         label={'EmployeeDesignation:'}
-                        value={this.props.EmpDesignation}
-                        onChangeText={(text) => {this.props.DesiChanged(text)}}
+                        value={this.state.EmpDesignation}
+                        onChangeText={(text) => this.setState({EmpDesignation:text})}
                     >
                     </Input>
                    {/* <Button onPress={() => this.onButtonClick.bind(this)} />*/}
@@ -77,6 +81,7 @@ class RegisterComponent extends Component{
                         </Text>
 
                     </TouchableOpacity>
+
                 </View>
 
         );
@@ -91,14 +96,17 @@ const mapStateToProps=state=>{
 
     }
 };
-/*function mapDispatchToProps(dispatch) {
+/*
+function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(NameChanged,SalaryChanged,DesiChanged,CreateUser, dispatch),
-        routerActions: bindActionCreators({pushState}, dispatch)
+        actions: bindActionCreators(CreateUser, dispatch),
+
     }
-}*/
+}
+*/
 
 //export default connect(mapStateToProps, mapDispatchToProps)(RegisterComponent);
+
 export default connect(mapStateToProps,{
     NameChanged,SalaryChanged,DesiChanged,CreateUser
 })(RegisterComponent);
