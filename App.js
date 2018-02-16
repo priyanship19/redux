@@ -19,9 +19,9 @@ class App extends Component{
     return(
 
         <View>
-        <Provider store={(createStore(AppReducer, compose(applyMiddleware(thunk),window.devToolsExtension ? window.devToolsExtension() : f => f
+        <Provider store={(createStore(AppReducer, compose(applyMiddleware(ReduxPromise),window.devToolsExtension ? window.devToolsExtension() : f => f
         )))}>
-        <GetEmp/>
+      <RegisterComponent/>
         </Provider>
         </View>
 
@@ -32,3 +32,5 @@ class App extends Component{
   }
 }
 export default App;
+
+

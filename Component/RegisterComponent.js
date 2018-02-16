@@ -21,7 +21,7 @@ class RegisterComponent extends Component{
     onButtonClick(){
 
 
-      if(this.props.EmpName===''&& this.props.EmpDesignation===''&& this.state.EmpSalary==='' )
+      if(this.state.EmpName===''&& this.state.EmpDesignation===''&& this.state.EmpSalary==='' )
       {
           alert("Please fill the details")
       }
