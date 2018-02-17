@@ -1,7 +1,7 @@
 import React ,{Component} from 'react';
 import {View,Alert,TouchableOpacity,Text} from 'react-native';
 import {Button,Input,Header,Card} from "./Common";
-import {NameChanged,DesiChanged,SalaryChanged,CreateUser} from "../Actions/Action";
+import {CreateUser} from "../Actions/Action";
 import {connect,bindActionCreators} from 'react-redux';
 import axios from 'axios';
 
@@ -9,11 +9,11 @@ class RegisterComponent extends Component{
     constructor(props)
     {
         super(props);
-        this.state ={
-                EmpName:'',
-                EmpSalary:'',
-                EmpDesignation:''
-        };
+this.state={
+    EmpName :'',
+    EmpDesignation:'',
+    EmpSalary:''
+}
 
     }
 
@@ -29,11 +29,11 @@ class RegisterComponent extends Component{
 
           this.props.CreateUser(this.state.EmpName,this.state.EmpSalary,this.state.EmpDesignation).then((res)=>{
               console.log(res);
-              debugger
+
               Alert.alert("userCreated");
           }).catch((err)=>{
               console.log('error', err);
-              debugger
+
               Alert.alert('error');
           })
       }
@@ -90,10 +90,7 @@ class RegisterComponent extends Component{
 const mapStateToProps=state=>{
     console.log(state);
     return{
-        EmpName:state.Emp.EmpName,
-        EmpSalary:state.Emp.EmpSalary,
-        EmpDesignation:state.Emp.EmpDesignation
-
+       SavesData:state.Emp.SavesData
     }
 };
 /*
@@ -108,5 +105,5 @@ function mapDispatchToProps(dispatch) {
 //export default connect(mapStateToProps, mapDispatchToProps)(RegisterComponent);
 
 export default connect(mapStateToProps,{
-    NameChanged,SalaryChanged,DesiChanged,CreateUser
+    CreateUser
 })(RegisterComponent);

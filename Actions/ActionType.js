@@ -1,6 +1,4 @@
-export const NAME_SAVE = 'NAME_SAVE';
-export const SALARY_SAVE = 'SALARY_SAVE';
-export const DESI_SAVE='DESI_SAVE';
+//Insert Data
 export const SAVE_SUCCESS='SAVE_SUCCESS';
 
 

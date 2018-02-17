@@ -7,18 +7,17 @@ import { AsyncStorage } from 'react-native';
 export const EmpAction = ()  =>{
 
     return (dispatch, getState) => {
-        debugger;
+
         return CallApi(Constant.BASE_URL+Constant.select,'get',{},{})
             .then((response)=>{
                 console.log("response get -> " + Constant.BASE_URL+Constant.select);
 
                 dispatch({
                     type: GET_DATA,
-                    payload: response
+                    payload: response.data
                 });
 
-
-               return Promise.resolve(console.log(response.data));
+                return Promise.resolve(response.data);
 
             })
             .catch((error)=>{

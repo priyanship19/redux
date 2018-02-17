@@ -27,7 +27,7 @@ class GetEmpDetails extends Component{
     render()
     {
 
-        console.log('PROPS',this.props)
+      /*  console.log('PROPS',this.props)*/
         // console.log(this.props.actions.EmpAction);
         // Alert.alert("Display Dsata"+this.props.actions.EmpAction);
         return(

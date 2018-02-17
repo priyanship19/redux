@@ -8,7 +8,7 @@ export  function CallApi(url,type='get',data={},header={}) {
         return axios.get(url,{headers: reqHeader})
             .then((response) => {
            // console.log("Employee Data " + response.data);
-                return response.data;
+                return Promise.resolve(response)
             })
             .catch((err) => {
                 if(err.response != undefined){
