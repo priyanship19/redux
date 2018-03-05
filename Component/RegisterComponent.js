@@ -1,8 +1,10 @@
 import React ,{Component} from 'react';
-import {View,Alert,TouchableOpacity,Text} from 'react-native';
+import {View,Alert,TouchableOpacity,Text,TextInput} from 'react-native';
 import {Button,Input,Header,Card} from "./Common";
 import {CreateUser} from "../Actions/Action";
 import {connect,bindActionCreators} from 'react-redux';
+import { NavigationActions } from 'react-navigation'
+import {responsiveHeight,responsiveWidth,responsiveFontSize} from 'react-native-responsive-dimensions';
 import axios from 'axios';
 
 class RegisterComponent extends Component{
@@ -19,9 +21,16 @@ this.state={
 
 
     onButtonClick(){
+        this.props.CreateUser({
+
+            EmpName:this.state.EmpName,
+            EmpSalary:this.state.EmpSalary,
+            EmpDesignation:this.state.EmpDesignation
+        })
 
 
-      if(this.state.EmpName===''&& this.state.EmpDesignation===''&& this.state.EmpSalary==='' )
+
+    /*  if(this.state.EmpName===''&& this.state.EmpDesignation===''&& this.state.EmpSalary==='' )
       {
           alert("Please fill the details")
       }
@@ -36,15 +45,44 @@ this.state={
 
               Alert.alert('error');
           })
-      }
+      }*/
+    }
+    componentWillReceiveProps(nextProps){
+
+        var res = nextProps.status;
+        console.log("Status" + res);
+
+        if(this.state.EmpName===''&& this.state.EmpDesignation===''&& this.state.EmpSalary==='')
+        {
+
+            Alert.alert("You Are Not Navigate TO Another Page");
+        }
+        else if(res === 200)
+        {
+
+            this.props.navigation.dispatch(NavigationActions.reset({
+
+                index:0,
+                actions : [
+
+                    NavigationActions.navigate({routeName:'Display'})
+                ]
+            }))
+        }
+
+
+
     }
     render()
     {
 
-
+      //  const {navigate} = this.props.navigation;
         return(
 
+
                 <View>
+
+
                     <Input
                         label={'EmployeeName : '}
                         value={this.state.EmpName}
@@ -53,7 +91,7 @@ this.state={
                     </Input>
                     <Input
                         label={'EmployeeSalary:'}
-                        value={this.state.EmpSalary}
+                        value={this.state.EmpSalary.toString()}
                         onChangeText={(text) => this.setState({EmpSalary:text})}
                     >
                     </Input>
@@ -63,7 +101,8 @@ this.state={
                         onChangeText={(text) => this.setState({EmpDesignation:text})}
                     >
                     </Input>
-                   {/* <Button onPress={() => this.onButtonClick.bind(this)} />*/}
+
+                    {/*  <Button onPress={() => this.onButtonClick.bind(this)} />*/}
                     <TouchableOpacity style={{borderRadius: 3,
                         marginTop: '2%',
                         height:'10%',
@@ -82,7 +121,11 @@ this.state={
 
                     </TouchableOpacity>
 
+
                 </View>
+
+
+
 
         );
     }
@@ -90,7 +133,8 @@ this.state={
 const mapStateToProps=state=>{
     console.log(state);
     return{
-       SavesData:state.Emp.SavesData
+       SavesData:state.Emp.SavesData,
+        status:state.Emp.status
     }
 };
 /*

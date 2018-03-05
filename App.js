@@ -9,23 +9,21 @@ import { createStore, applyMiddleware,compose } from 'redux';
 import ReduxPromise from 'redux-promise';
 import {Provider} from 'react-redux';
 import GetEmp from './Component/GetEmpDetails';
+import RootNavigator from './Component/StackNavigation';
+import UpdateEmp from './Component/UpdateDetails';
 
 class App extends Component{
 
+
   render()
   {
+
       /*const store = createStore(AppReducer, compose(applyMiddleware(thunk),window.devToolsExtension ? window.devToolsExtension() : f => f
       ));*/
     return(
-
-        <View>
-        <Provider store={(createStore(AppReducer, compose(applyMiddleware(thunk),window.devToolsExtension ? window.devToolsExtension() : f => f
-        )))}>
-     <GetEmp/>
+        <Provider store={(createStore(AppReducer,applyMiddleware(thunk)))}>
+                <RootNavigator/>
         </Provider>
-        </View>
-
-
     )
 
 

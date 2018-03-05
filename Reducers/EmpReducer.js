@@ -1,7 +1,8 @@
 import {SAVE_SUCCESS} from '../Actions/ActionType'
 const INITIAL_STATE ={
 
-    SavesData:{}
+    SavesData:{},
+    status:0
 };
 export default(state=INITIAL_STATE,action)=>
 {
@@ -12,7 +13,8 @@ export default(state=INITIAL_STATE,action)=>
             {
             return{
                 ...state,
-                SavesData:action.payload
+                SavesData:action.payload,
+                status:action.status
             }
         }
          default:{

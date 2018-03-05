@@ -3,14 +3,10 @@ import Constant from '../ApiCall/ApiConst'
 import {CallApi} from '../ApiCall/apiCall';
 
 
-export const CreateUser=(EmpName,EmpSalary,EmpDesignation)=>{
+export const CreateUser=(data)=>{
 
     return(dispatch,getState)=> {
-        return CallApi(Constant.BASE_URL + Constant.insert, 'post', {
-            EmpName: EmpName,
-            EmpSalary: EmpSalary,
-            EmpDesignation: EmpDesignation
-        }, {})
+        return CallApi(Constant.BASE_URL + Constant.insert, 'post',data, {})
             .then((response) => {
 
                 console.log("response -> ", Constant.BASE_URL + Constant.insert);
@@ -18,7 +14,8 @@ export const CreateUser=(EmpName,EmpSalary,EmpDesignation)=>{
 
                 dispatch({
                     type: SAVE_SUCCESS,
-                    payload: response.data
+                    payload: response.data,
+                    status:response.status
                 });
 
                 return Promise.resolve(response.data);
