@@ -71,21 +71,15 @@ class GetEmpDetails extends Component{
                     return(
 
                         <View key={key}>
-                            <Text style={{paddingTop:responsiveHeight(3)}}>
-                                {data._id}
-                            </Text>
-                            <Text style={{paddingTop:responsiveHeight(3)}}>
+                            <Text>
                                 {data.EmpName}
                             </Text>
-                            <Text style={{paddingTop:responsiveHeight(3)}}>
+                            <Text>
                                 {data.EmpSalary}
                             </Text>
-                            <Text style={{paddingTop:responsiveHeight(3)}}>
+                            <Text>
                                 {data.EmpDesignation}
                             </Text>
-
-                            <View>
-
                                 <TouchableOpacity style={{borderRadius: 3,
                                     marginTop: '2%',
                                     height:'10%',
@@ -103,8 +97,8 @@ class GetEmpDetails extends Component{
                                     </Text>
 
                                 </TouchableOpacity>
-                            </View>
-                                <View>
+
+
                                 <TouchableOpacity style={{borderRadius: 3,
                                     marginTop: '2%',
                                     height:'10%',
@@ -122,7 +116,7 @@ class GetEmpDetails extends Component{
                                     </Text>
 
                                 </TouchableOpacity>
-                                </View>
+
 
 
 

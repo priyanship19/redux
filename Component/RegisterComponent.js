@@ -102,6 +102,7 @@ this.state={
                     >
                     </Input>
 
+
                     {/*  <Button onPress={() => this.onButtonClick.bind(this)} />*/}
                     <TouchableOpacity style={{borderRadius: 3,
                         marginTop: '2%',
@@ -116,11 +117,29 @@ this.state={
                         <Text style={{textAlign:'center',
                             fontSize:20,
                             color:'#040604'}}>
-                            SIGN IN
+                            Insert Employee
                         </Text>
 
                     </TouchableOpacity>
 
+
+                        <TouchableOpacity style={{borderRadius: 3,
+                            marginTop: '2%',
+                            height:'10%',
+                            width:'50%',
+                            marginLeft:'25%'
+                            ,          justifyContent:'center'
+                            ,         backgroundColor:'#65C912'}}
+                                          onPress={() => {this.props.navigation.navigate('Display')}}
+                        >
+
+                            <Text style={{textAlign:'center',
+                                fontSize:20,
+                                color:'#040604'}}>
+                                Display Employee
+                            </Text>
+
+                        </TouchableOpacity>
 
                 </View>
 
